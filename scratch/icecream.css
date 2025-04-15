@@ -1,0 +1,96 @@
+/* Reset some default browser styles */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Merriweather', 'Georgia', serif;
+    background: linear-gradient(135deg, #f8f5f2 0%, #e7d7c1 100%);
+    color: #3e2723; /* Deep chocolate brown */
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Navigation Bar */
+.common.nav,.common.foot {
+    background: #5d4037; /* Rich chocolate brown */
+    padding: 18px 0;
+    text-align: center;
+    font-size: 1.1rem;
+    color: white;
+    border-bottom: 4px solid #d7b899; /* Cookie gold */
+    box-shadow: 0 2px 8px rgba(61, 36, 18, 0.10);
+    letter-spacing: 1px;
+}
+
+.common.nav a,.common.foot a {
+    color: #fff8f0;
+    text-decoration: none;
+    font-weight: 600;
+    margin: 0 20px;
+    transition: color 0.2s;
+}
+.common.nav a:hover {
+    color: #d7b899;
+    text-shadow: 0 1px 4px #3e2723;
+}
+
+/* Header */
+.common.header {
+    background: #a1887f; /* Lighter brown, like baked cookie */
+    padding: 40px 0 20px 0;
+    text-align: center;
+    width: 41.5%;
+    border-bottom: 4px solid #d7b899;
+    border-radius: 0 0 32px 32px;
+    box-shadow: 0 4px 20px rgba(61, 36, 18, 0.10);
+}
+
+.rizz {
+    font-family: 'Merriweather', 'Georgia', serif;
+    font-size: 2.7rem;
+    color: #3e2723;
+    letter-spacing: 2px;
+    margin: 0;
+    text-shadow: 1px 2px 0 #fff8f0, 2px 4px 8px #d7b899;
+}
+
+/* Main Content */
+.common.content {
+    max-width: 700px;
+    margin: 40px auto 40px auto;
+    background: #fff8f0;
+    border-radius: 18px;
+    font-size: 1.1rem;
+    box-shadow: 0 4px 24px rgba(61, 36, 18, 0.10);
+    padding: 36px 36px 30px 36px;
+    border: 1px solid #d7b899;
+}
+
+.common.content h2 {
+    color: #5d4037;
+    font-family: 'Merriweather', 'Georgia', serif;
+    font-size: 2rem;
+    margin-bottom: 12px;
+    font-weight: 700;
+    text-align: center;
+}
+
+.common.content h3 {
+    color: #a1887f;
+    font-size: 1.6rem;
+    margin-top: 28px;
+    margin-bottom: 10px;
+    letter-spacing: 1px;
+    font-weight: 600;
+    text-align: center;
+}
+
+.common.content p {
+    font-size: 1.1rem;
+    margin-bottom: 18px;
+}

@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="tier.css">
+    <title>Tier List</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        h1 {
+            margin-top: 20px;
+        }
+
+        h2 {
+            margin-top: 5px;
+            font-weight: normal;
+            color: #555;
+        }
+
+        .tier-container {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            width: 80%;
+        }
+
+        .tier {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        .tier-label {
+            font-weight: bold;
+            width: 50px;
+        }
+
+        .drop-zone {
+            flex-grow: 1;
+            min-height: 100px;
+            border: 2px dashed #ccc;
+            border-radius: 5px;
+            background-color: #fff;
+            display: flex;
+            flex-wrap: wrap; /* Allows multiple images to be displayed */
+            gap: 10px; /* Adds spacing between images */
+            padding: 10px; /* Adds padding inside the drop zone */
+        }
+
+        .tier.s { background-color: #ff0000; } /* Red */
+        .tier.a { background-color: #ff7f00; } /* Orange */
+        .tier.b { background-color: #ffff00; } /* Yellow */
+        .tier.c { background-color: #00ff00; } /* Green */
+        .tier.d { background-color: #0000ff; } /* Blue */
+        .tier.f { background-color: #8b00ff; } /* Purple */
+
+        img {
+            max-width: 100px; /* Restricts image width */
+            max-height: 100px; /* Restricts image height */
+            cursor: grab; /* Indicates draggable images */
+        }
+
+        .trash-can {
+            margin-top: 20px;
+            width: 100px;
+            height: 100px;
+            background-color: #333;
+            border-radius: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-weight: bold;
+        }
+
+        .trash-can:hover {
+            background-color: red; /* Highlights when hovered over */
+        }
+    </style>
+    <div>
+        <a href="../index.html">Blog</a> &nbsp; | &nbsp;
+        <a href="index.html">Ice Cream</a> &nbsp; | &nbsp;
+        <a href="resume.html">Resume</a> &nbsp; | &nbsp;
+    </div>
+</head>
+<body>
+    <h1>Tier List</h1>
+    <h2>I love to make Tier Lists, so I had AI make me one! You can upload any images from the internet. Enjoy!</h2>
+    <div class="tier-container">
+        <div class="tier s">
+            <span class="tier-label">S</span>
+            <div class="drop-zone" ondragover="event.preventDefault()" ondrop="handleDrop(event)"></div>
+        </div>
+        <div class="tier a">
+            <span class="tier-label">A</span>
+            <div class="drop-zone" ondragover="event.preventDefault()" ondrop="handleDrop(event)"></div>
+        </div>
+        <div class="tier b">
+            <span class="tier-label">B</span>
+            <div class="drop-zone" ondragover="event.preventDefault()" ondrop="handleDrop(event)"></div>
+        </div>
+        <div class="tier c">
+            <span class="tier-label">C</span>
+            <div class="drop-zone" ondragover="event.preventDefault()" ondrop="handleDrop(event)"></div>
+        </div>
+        <div class="tier d">
+            <span class="tier-label">D</span>
+            <div class="drop-zone" ondragover="event.preventDefault()" ondrop="handleDrop(event)"></div>
+        </div>
+        <div class="tier f">
+            <span class="tier-label">F</span>
+            <div class="drop-zone" ondragover="event.preventDefault()" ondrop="handleDrop(event)"></div>
+        </div>
+    </div>
+
+    <!-- Trash Can -->
+    <div class="trash-can" ondragover="event.preventDefault()" ondrop="handleTrashDrop(event)">
+        Trash
+    </div>
+
+    <!-- JavaScript for drag-and-drop functionality -->
+    <script>
+        let draggedElement = null;
+
+        function handleDragStart(event) {
+            draggedElement = event.target; // Store the dragged element
+        }
+
+        function handleDrop(event) {
+            event.preventDefault();
+
+            const target = event.target;
+
+            // Check if the drop target is another image (for reordering within a tier)
+            if (target.tagName === 'IMG' && draggedElement !== target) {
+                const parent = target.parentNode;
+
+                // Reorder the dragged element before or after the target
+                parent.insertBefore(draggedElement, target.nextSibling);
+                draggedElement = null; // Clear reference
+                return;
+            }
+
+            // Check if the drop target is a valid drop zone
+            if (target.classList.contains('drop-zone')) {
+                if (draggedElement) {
+                    // Remove the dragged element from its current parent
+                    draggedElement.parentNode.removeChild(draggedElement);
+
+                    // Append the element to the new drop zone
+                    target.appendChild(draggedElement);
+
+                    // Clear the reference to the dragged element
+                    draggedElement = null;
+                    return;
+                }
+
+                const files = event.dataTransfer.files; // Check for dragged files
+                const imageUrl = event.dataTransfer.getData('text/plain'); // Check for dragged URL
+
+                if (files && files.length > 0) {
+                    Array.from(files).forEach(file => {
+                        if (file.type.startsWith('image/')) {
+                            const img = document.createElement('img');
+                            img.src = URL.createObjectURL(file); // Create a blob URL for the file
+                            img.draggable = true;
+
+                            img.addEventListener('dragstart', handleDragStart);
+
+                            target.appendChild(img);
+                        }
+                    });
+                    return;
+                }
+
+                if (imageUrl) {
+                    const img = document.createElement('img');
+                    img.src = imageUrl; // Use the URL directly
+                    img.draggable = true;
+
+                    img.addEventListener('dragstart', handleDragStart);
+
+                    target.appendChild(img);
+                    return;
+                }
+                console.error("No valid image found.");
+                return;
+           }
+       }
+
+       function handleTrashDrop(event) {
+           event.preventDefault();
+
+           if (draggedElement) {
+               // Remove the dragged element completely
+               draggedElement.parentNode.removeChild(draggedElement);
+               console.log("Image deleted!");
+               draggedElement = null; // Clear reference to avoid issues
+               return;
+           }
+           
+           console.error("No valid image to delete.");
+       }
+
+       document.body.addEventListener("dragstart", handleDragStart);
+   </script> 
+</body> 
+</html> 

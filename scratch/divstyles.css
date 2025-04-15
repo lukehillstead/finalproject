@@ -1,0 +1,122 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 1.05rem;
+    background-color: #002E5D; /* BYU Navy */
+    color: #FFFFFF; /* White text for contrast */
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+}
+
+/* Navigation Bar */
+.common.nav {
+    background: #002E5D; /* Navy */
+    padding: 12px 0;
+    text-align: right;
+    border-bottom: 2px solid #E5E5E5; /* Light gray border */
+    font-size: 1.1rem;
+    letter-spacing: 1px;
+}
+
+.common.nav a {
+    color: #FFFFFF; /* White links */
+    margin: 0 12px;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+.common.nav a:hover {
+    color: #B0B0B0; /* Subtle gray on hover */
+    text-decoration: underline;
+}
+
+/* Header */
+.common.header {
+    background: #002E5D; /* Navy */
+    padding: 32px 0 12px 0;
+    text-align: center;
+    border-bottom: 3px solid #E5E5E5; /* Gray accent */
+    font-size: 2rem;
+    color: #FFFFFF; /* White text */
+    letter-spacing: 2px;
+}
+
+/* Main Content */
+.common.content, main {
+    max-width: 900px;
+    margin: 40px auto 40px auto;
+    background: #FFFFFF; /* White background for content */
+    border-radius: 12px;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.10);
+    padding: 40px 40px 30px 40px;
+    color: #002E5D; /* Navy text for readability */
+}
+
+/* Section Headings */
+h2 {
+    color: #002E5D; /* Navy */
+    border-bottom: 2px solid #B0B0B0; /* Subtle gray underline */
+    padding-bottom: 4px;
+    margin-top: 32px;
+    margin-bottom: 16px;
+    font-size: 1.4rem;
+    letter-spacing: 1px;
+    text-align: left;
+}
+
+/* Job/Education Titles */
+strong {
+    color: #000000; /* Black for emphasis */
+    font-weight: 600;
+}
+
+/* Resume Details */
+section {
+    margin-bottom: 28px;
+}
+
+ul {
+    margin: 10px 0 10px 25px;
+    padding: 0;
+}
+li {
+    margin-bottom: 7px;
+    background: none;
+    padding: 0;
+    transition: background 0.2s;
+    border-radius: 4px;
+    color: #002E5D; /* Navy text */
+}
+li:hover {
+    background-color: #E5E5E5; /* Light gray on hover */
+    color: #002E5D;
+    text-decoration: underline;
+}
+
+/* Footer */
+.common.footer, footer {
+    background: #002E5D; /* Navy */
+    color: #E5E5E5; /* Light gray text */
+    text-align: center;
+    padding: 18px 0 10px 0;
+    font-size: 1rem;
+    font-style: italic;
+    border-top: 2px solid #E5E5E5;
+    position: static;
+    width: 100%;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+    .common.content, main {
+        padding: 18px 5vw 18px 5vw;
+    }
+    .common.header {
+        font-size: 1.2rem;
+    }
+    h2 {
+        font-size: 1.1rem;
+    }
+}
